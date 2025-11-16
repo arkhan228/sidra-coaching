@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sidra Coaching — Website
 
-## Getting Started
+This repository contains the source code for the Sidra Coaching website.
+The site is built with Next.js (App Router) and deployed on Netlify.
+It provides program information, subjects offered, and a secure contact form for inquiries.
 
-First, run the development server:
+### 🚀 Tech Stack
 
-```bash
+Next.js 14 (App Router)
+
+Tailwind CSS
+
+Next/Image for optimized images
+
+Resend (email service)
+
+Google Sheets (submission logging)
+
+Netlify (deployment)
+
+### 📦 Installation
+
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit:
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## To build for production:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run build
+npm start
 
-## Learn More
+### 🔐 Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create a .env.local file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+RESEND_API_KEY=
+GOOGLE_SHEETS_WEBHOOK_URL=
+GOOGLE_SHEETS_SECRET=
+NEXT_PUBLIC_SITE_URL=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+These must be added in Netlify’s environment settings as well.
 
-## Deploy on Vercel
+### ✉️ Contact Form
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The form uses a Next.js Server Action to:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Send an email via Resend
+
+Log the submission to Google Sheets
+
+Redirect the user to a “Thank You” page
+
+To update the recipient email, edit:
+
+**app/\_actions/sendEmail.js**
+
+### 📄 Updating Content
+
+You can edit text or sections inside:
+
+app/page.js (Home)
+app/about/page.js
+app/programs/page.js
+app/subjects/page.js
+app/contact/page.js
+components/ (Buttons, Navbar, Footer, etc.)
+
+### Images are stored in:
+
+/public
+
+OG image: /public/og-image.png
+
+### 🌐 Deployment Notes
+
+Hosted on Netlify
+
+Make sure environment variables are set before deploying
+
+If the domain changes, update:
+
+metadataBase in app/layout.js
+
+OpenGraph url field
+
+NEXT_PUBLIC_SITE_URL
+
+### 🛠️ Maintenance
+
+Update Google Sheets script URL if the Apps Script is redeployed
+
+Keep .env.local out of version control
+
+Replace or optimize images in /public as needed

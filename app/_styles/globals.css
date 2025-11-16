@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+/* Define your custom palette here (v4 way) */
+@theme {
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-300: #86efac;
+  --color-primary-400: #4ade80;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #059669;
+  --color-primary-700: #047857;
+  --color-primary-800: #065f46;
+  --color-primary-900: #064e3b;
+  --color-primary-950: #022c22;
+
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+  --color-accent-800: #92400e;
+  --color-accent-900: #78350f;
+  --color-accent-950: #451a03;
+}
+
+@layer utilities {
+  .nav-bar {
+    @apply absolute flex flex-col px-1 py-2 transition duration-300 transform rounded-md shadow-sm top-4 md:top-6 right-14 lg:pointer-events-auto lg:opacity-100 lg:scale-100 bg-white/90 lg:static lg:flex-row lg:bg-transparent lg:shadow-none lg:gap-4 lg:items-center md:right-24 md:px-2 md:py-4;
+  }
+
+  .spinner {
+    margin: 3.2rem auto 1.6rem;
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid theme('colors.primary.900');
+    border-right-color: theme('colors.primary.200');
+    animation: rotate 1s infinite linear;
+  }
+
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid theme('colors.primary.200');
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
+
+/* (Optional) you can still use other CSS here */
