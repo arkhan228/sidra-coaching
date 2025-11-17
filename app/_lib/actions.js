@@ -4,25 +4,20 @@ import { Resend } from 'resend';
 import EmailTemplate from '../_components/EmailTemplate';
 import { redirect } from 'next/navigation';
 import { render } from '@react-email/render';
-import { headers } from 'next/headers';
 
 async function logToSheet(data) {
-  try {
-    const res = await fetch(process.env.WEB_APP_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ...data,
-        key: process.env.WEB_APP_SECRET,
-      }),
-    });
+  const res = await fetch(process.env.WEB_APP_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      ...data,
+      key: process.env.WEB_APP_SECRET,
+    }),
+  });
 
-    await res.text();
-  } catch (error) {
-    console.error(error);
-  }
+  await res.text();
 }
 
 export async function sendEmail(formData) {

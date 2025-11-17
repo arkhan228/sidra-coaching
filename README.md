@@ -39,8 +39,27 @@ RESEND_API_KEY=
 GOOGLE_SHEETS_WEBHOOK_URL=
 GOOGLE_SHEETS_SECRET=
 NEXT_PUBLIC_SITE_URL=
+GA_ID
 
 These must be added in Netlify’s environment settings as well.
+
+### 📈 Analytics (Google Analytics)
+
+The website uses Google Analytics (GA4) to track traffic and page views.
+
+To update the Analytics ID:
+
+Open Google Analytics → get the Measurement ID (G-XXXXXXXXXX)
+
+Set:
+
+GA_ID=G-XXXXXXXXXX
+
+Add the variable in Netlify
+
+Deploy again
+
+Analytics tracking (including route changes) works automatically.
 
 ### ✉️ Contact Form
 
