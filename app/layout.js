@@ -5,6 +5,7 @@ import Header from '@components/Header';
 import Footer from '@components/Footer';
 import Script from 'next/script';
 import Analytics from '@components/Analytics';
+import { Suspense } from 'react';
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -52,12 +53,16 @@ export const metadata = {
   },
 };
 
+const GaId = process.env.NEXT_PUBLIC_GA_ID;
+
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head />
       <body className={`${inter.className} antialiased  text-accent-950`}>
-        <Analytics />
+        <Suspense fallback={null}>
+          <Analytics GaId={GaId} />
+        </Suspense>
         <Header />
         <main className='flex flex-col max-w-screen-sm mx-auto md:max-w-screen-md md:text-xl xl:text-2xl lg:max-w-screen-lg xl:max-w-screen-xl'>
           {children}
@@ -65,23 +70,23 @@ export default function RootLayout({ children }) {
         <Footer />
 
         {/* Google Analytics Script Loader */}
-        <Script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_ID}`}
-          strategy='afterInteractive'
-        />
+        {GaId && (
+          <Script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GaId}`}
+            strategy='afterInteractive'
+          />
+        )}
 
         {/* Google Analytics Init Script */}
-        <Script id='ga-init' strategy='afterInteractive'>
+        {/* <Script id='ga-init' strategy='afterInteractive'>
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', ${process.env.GA_ID}, {
-              page_path: window.location.pathname,
-            });
+            gtag('config', ${process.env.GA_ID});
           `}
-        </Script>
+        </Script> */}
       </body>
     </html>
   );
