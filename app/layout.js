@@ -53,7 +53,7 @@ export const metadata = {
   },
 };
 
-const GaId = process.env.NEXT_PUBLIC_GA_ID;
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export default function RootLayout({ children }) {
   return (
@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
       <head />
       <body className={`${inter.className} antialiased  text-accent-950`}>
         <Suspense fallback={null}>
-          <Analytics GaId={GaId} />
+          <Analytics gaId={gaId} />
         </Suspense>
         <Header />
         <main className='flex flex-col max-w-screen-sm mx-auto md:max-w-screen-md md:text-xl xl:text-2xl lg:max-w-screen-lg xl:max-w-screen-xl'>
@@ -70,10 +70,10 @@ export default function RootLayout({ children }) {
         <Footer />
 
         {/* Google Analytics Script Loader */}
-        {GaId && (
+        {gaId && (
           <Script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GaId}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
             strategy='afterInteractive'
           />
         )}
